@@ -1,17 +1,20 @@
-FROM python:3.11.4-slim-bullseye
+FROM python:3.9-slim 
+
+# Set working directory
 WORKDIR /app
 
-ENV PYTHONUNBUFFERED 1
-ENV PYTHONDONTWRITEBYTECODE 1
-
-# install system dependencies
-RUN apt-get update
-
-# install dependencies
-RUN pip install --upgrade pip
-COPY ./requirements.txt /app/
+# Copy requirements and install dependencies
+COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
-COPY . /app
+# Copy project files
+COPY . .
 
-ENTRYPOINT [ "gunicorn", "core.wsgi"]
+# Collect static files (if applicable)
+RUN python manage.py collectstatic --noinput
+
+# Expose the port for your API
+EXPOSE 8000
+
+# Define the command to run when the container starts
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "your_project_name.wsgi"]

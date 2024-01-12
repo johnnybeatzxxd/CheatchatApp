@@ -43,6 +43,6 @@ def test_token(request):
 @permission_classes([IsAuthenticated])
 def chat(request):
   print(request.data["messages"])
-  brain.chat(request.data["messages"])
+  #brain.chat(request.data["messages"])
 
   return Response("passed!", status=status.HTTP_200_OK)

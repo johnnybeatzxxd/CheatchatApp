@@ -35,7 +35,7 @@ def chat(messages):
                                 generation_config=generation_config,
                                 safety_settings=safety_settings)
 
-  convo = model.start_chat(history=messages)
+  convo = model.start_chat(history=[{'role':"model","parts":"hi"}])
 
   convo.send_message("hello")
   print(convo.last.text)

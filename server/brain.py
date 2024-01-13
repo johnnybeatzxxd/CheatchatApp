@@ -35,8 +35,17 @@ def chat(messages):
                                 generation_config=generation_config,
                                 safety_settings=safety_settings)
 
-  convo = model.start_chat(history=[{'role':"user","parts":"hi"}])
+  convo = model.start_chat(history=[
+  {
+    "role": "user",
+    "parts": ["hi"]
+  },
+  {
+    "role": "model",
+    "parts": ["Hello! How can I assist you today?"]
+  },
+])
 
-  convo.send_message("hello")
+  convo.send_message("nvm")
   print(convo.last.text)
   return convo.last.text

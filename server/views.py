@@ -42,12 +42,7 @@ def test_token(request):
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 def chat(request):
-  print("this is",request.data)
   print(request.data.getlist("messages"))
-
-  
-
-  
-  #brain.chat(request.data["messages"])
+  brain.chat(request.data.getlist("messages"))
 
   return Response("passed!", status=status.HTTP_200_OK)

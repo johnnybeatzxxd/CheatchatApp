@@ -43,6 +43,9 @@ def test_token(request):
 @permission_classes([IsAuthenticated])
 def chat(request):
   print("this is",request.data["messages"])
+  for message in request.data["messages"]:
+      print("Role:", message["role"])
+      print("Message content:", message["lmao"])
 
   
   #brain.chat(request.data["messages"])

@@ -43,6 +43,8 @@ def test_token(request):
 @permission_classes([IsAuthenticated])
 def chat(request):
   print("this is",request.data)
+  print(request.data.getlist("messages")[0]["lmao"])
+
   
 
   

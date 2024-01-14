@@ -46,6 +46,7 @@ def chat(request):
     print(conversation)
     message = conversation.pop()
     print(conversation)
+    message = message["parts"]
     print(message)
     response = brain.chat(conversation,message)
 

@@ -42,8 +42,9 @@ def test_token(request):
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 def chat(request):
-  print(request.data)
-  
-  response = brain.chat(request.data)
+  conversation = request.data["messages"]
+  print(conversation)
+
+  response = brain.chat(conversation)
 
   return Response(response, status=status.HTTP_200_OK)

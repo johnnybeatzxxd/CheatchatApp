@@ -42,20 +42,8 @@ def test_token(request):
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 def chat(request):
-  print(request.data.getlist("messages"))
-  flat_list = request.data.getlist("messages")
-  original_data = []
-  temp_dict = {}
+  print(request.data)
   
-  for item in flat_list:
-      if 'role' not in temp_dict:
-          temp_dict['role'] = item
-      elif 'parts' not in temp_dict:
-          temp_dict['parts'] = item
-          original_data.append(temp_dict)
-          temp_dict = {}
-  
-  print(original_data)
-  response = brain.chat(original_data)
+  response = brain.chat(request.data)
 
   return Response(response, status=status.HTTP_200_OK)

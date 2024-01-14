@@ -4,7 +4,7 @@ import google.generativeai as genai
 genai.configure(api_key="AIzaSyCZvD7MDkqIXdbbT-iDFlKvEgh9qMfeTkI")
 
 # Set up the model
-def chat(messages):
+def chat(Conversations,message):
   generation_config = {
     "temperature": 0.1,
     "top_p": 1,
@@ -35,8 +35,8 @@ def chat(messages):
                                 generation_config=generation_config,
                                 safety_settings=safety_settings)
 
-  convo = model.start_chat(history=messages)
+  convo = model.start_chat(history=Conversations)
 
-  convo.send_message("nvm")
+  convo.send_message(message)
   print(convo.last.text)
   return convo.last.text

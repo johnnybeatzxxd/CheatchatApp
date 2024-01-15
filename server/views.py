@@ -49,7 +49,7 @@ def chat(request):
     message = message["parts"]
     print(message)
     ai_response = brain.chat(conversation,message)
-    response = {"response":{"model":ai_response}}
+    response = {"response":{"model":str(ai_response)}}
 
 
-    return Response(response, status=status.HTTP_200_OK)
+    return Response(response, status=status.HTTP_200_OK,)

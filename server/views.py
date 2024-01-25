@@ -50,7 +50,5 @@ def chat(request):
     print(conversation)
     ai_response = brain.chat(conversation,message)
     response = {"response":{"model":ai_response}}
-    
-
 
     return Response(response, status=status.HTTP_200_OK,)

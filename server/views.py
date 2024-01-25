@@ -43,11 +43,11 @@ def test_token(request):
 @permission_classes([IsAuthenticated])
 def chat(request):
     conversation = request.data["messages"]
-    print(conversation)
+    instruction = request.data["instruction"]
+    conversation = [{"role": "user", "parts":instruction},{"role":"model","parts":"ok!"}] + conversation
     message = conversation.pop()
-    print(conversation)
     message = message["parts"]
-    print(message)
+    print(conversation)
     ai_response = brain.chat(conversation,message)
     response = {"response":{"model":ai_response}}
     
